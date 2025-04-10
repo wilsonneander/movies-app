@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import './search-bar.scss';
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useEffect, useState } from 'react'
+import './search-bar.scss'
+import { FaMagnifyingGlass } from 'react-icons/fa6'
 
 type Props = {
-  onSearchChange?: (search: string) => void;
-};
+  onSearchChange?: (search: string) => void
+}
 
 export default function SearchBar({ onSearchChange }: Props) {
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState<string>('')
 
   useEffect(() => {
     if (onSearchChange) {
-      onSearchChange(search);
+      onSearchChange(search)
     }
-  }, [search, onSearchChange]); // Adiciona onSearchChange como dependência
+  }, [search, onSearchChange]) // Adiciona onSearchChange como dependência
 
   return (
     <div className="input-group">
@@ -30,5 +30,5 @@ export default function SearchBar({ onSearchChange }: Props) {
         onChange={(e) => setSearch(e.target.value)}
       />
     </div>
-  );
+  )
 }
