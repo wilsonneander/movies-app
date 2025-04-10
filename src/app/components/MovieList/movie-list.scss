@@ -1,0 +1,48 @@
+.loader-container {
+    width: 35px;
+    aspect-ratio: 1;
+    --_g: no-repeat radial-gradient(circle closest-side,#6046ff 90%,#0000);
+    background: 
+      var(--_g) 0    0,
+      var(--_g) 0    100%,
+      var(--_g) 100% 100%;
+    background-size: 40% 40%;
+    animation:l11 1s infinite linear;
+  }
+  @keyframes l11 {
+      25% {background-position:100% 0   ,0 100%,100% 100%}
+      50% {background-position:100% 0   ,0 0   ,100% 100%}
+      75% {background-position:100% 0   ,0 0   ,0    100%}
+      100%{background-position:100% 100%,0 0   ,0    100%}
+  }
+
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .content-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+
+.movie-list {
+    padding: 24px 3%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    list-style: none;
+    width: 100%; 
+}
