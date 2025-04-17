@@ -7,7 +7,9 @@ import MovieCard from '../MovieCard/movie-card'
 
 type Props = {
   movies?: Movie[]
+  isLoading?: boolean
 }
+
 
 export default function MovieList({ movies = [] }: Props) {
   const [showContent, setShowContent] = useState(false)

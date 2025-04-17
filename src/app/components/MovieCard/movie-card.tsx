@@ -29,7 +29,9 @@ export default function MovieCard(props: Props) {
         </div>
         <div className="movie-infos">
           <p className="movie-title">{movie.title}</p>
-          {movie.vote_average > 0 && <StarRating rating={movie.vote_average} />}
+          {movie.vote_average > 0 && (
+            <StarRating rating={movie.vote_average} />
+          )}
           <div className="hidden-content">
             {movie.overview && (
               <p className="description">
@@ -47,51 +49,52 @@ export default function MovieCard(props: Props) {
           </div>
         </div>
       </li>
+
       {openModal && movieDetails && (
-        <div className="modal">
-          <div className="modal-content">
-            <div className="modal-image">
+        <div className="modal-overlay" onClick={() => setOpenModal(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-banner">
               <img
                 src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`}
                 alt={movieDetails.title}
               />
-            </div>
-            <div className="modal-details">
-              <div className="modal-header">
-                <h2>{movieDetails.title}</h2>
-                <button
-                  className="close-button"
-                  onClick={() => setOpenModal(false)}
-                >
-                  &times;
-                </button>
+              <div className="modal-gradient" />
+              <div className="modal-header-content">
+                <h1>{movieDetails.title}</h1>
+                <div className="modal-buttons">
+                  <button className="btn-play">▶ Continuar</button>
+                  <button className="btn-like">👍</button>
+                </div>
               </div>
-              <div className="modal-info">
+            </div>
+            <div className="modal-description-area">
+              <p className="modal-overview">{movieDetails.overview}</p>
+              <div className="modal-meta">
                 <p>
-                  <strong>Release Year:</strong>{' '}
+                  <strong>Ano:</strong>{' '}
                   {new Date(movieDetails.release_date).getFullYear()}
                 </p>
                 <p>
-                  <strong>Rating:</strong>{' '}
+                  <strong>Idioma:</strong> {movieDetails.original_language}
+                </p>
+                <p>
+                  <strong>Popularidade:</strong> {movieDetails.popularity}
+                </p>
+                <p>
+                  <strong>Votos:</strong> {movieDetails.vote_count}
+                </p>
+                <div>
+                  <strong>Avaliação:</strong>{' '}
                   <StarRating rating={movieDetails.vote_average} />
-                </p>
-              </div>
-              <p className="modal-description">{movieDetails.overview}</p>
-              <div className="modal-extra-info">
-                <p>
-                  <strong>Original Title:</strong> {movieDetails.original_title}
-                </p>
-                <p>
-                  <strong>Language:</strong> {movieDetails.original_language}
-                </p>
-                <p>
-                  <strong>Popularity:</strong> {movieDetails.popularity}
-                </p>
-                <p>
-                  <strong>Vote Count:</strong> {movieDetails.vote_count}
-                </p>
+                </div>
               </div>
             </div>
+            <button
+              className="modal-close"
+              onClick={() => setOpenModal(false)}
+            >
+              ×
+            </button>
           </div>
         </div>
       )}

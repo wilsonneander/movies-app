@@ -72,105 +72,137 @@
     }
   }
 
-  .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #1e293b;
-    color: #f1f5f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 800px;
-    z-index: 1000;
-    padding: 20px;
+  .modal-overlay {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .modal {
+    position: relative;
+    background: #0f172a;
+    color: #f1f5f9;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    position: relative;
     flex-direction: column;
+  }
 
-    .modal-close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      color: #f1f5f9;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 1001;
+  .modal-banner {
+    position: relative;
+    height: 70vh;
 
-      &:hover {
-        color: #f87171;
-      }
-    }
-
-    .modal-image {
+    img {
       width: 100%;
-      height: 300px;
-      border-radius: 8px 8px 0 0;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
     }
 
-    .modal-content {
-      padding: 20px;
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
+    .modal-gradient {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, #0f172a 10%, transparent 90%);
+    }
 
-      .modal-left {
-        flex: 2;
+    .modal-header-content {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
 
-        .release-year-rating {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 10px;
-
-          .release-year {
-            font-size: 14px;
-            color: #94a3b8;
-          }
-
-          .rating {
-            font-size: 14px;
-            color: #fbbf24;
-          }
-        }
-
-        .modal-title {
-          font-size: 20px;
-          font-weight: bold;
-          margin-bottom: 10px;
-        }
-
-        .modal-description {
-          font-size: 14px;
-          line-height: 1.5;
-          color: #e2e8f0;
-        }
+      h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
       }
 
-      .modal-right {
-        flex: 1;
+      .modal-buttons {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        gap: 12px;
 
-        .info-item {
-          font-size: 14px;
-          color: #94a3b8;
+        .btn-play {
+          background: #f1f5f9;
+          color: #000;
+          border: none;
+          border-radius: 4px;
+          padding: 6px 12px;
+          font-weight: bold;
+          cursor: pointer;
+        }
 
-          span {
-            font-weight: bold;
-            color: #f1f5f9;
-          }
+        .btn-like {
+          background: #1e293b;
+          color: #f1f5f9;
+          border: 1px solid #f1f5f9;
+          border-radius: 4px;
+          padding: 6px 10px;
+          cursor: pointer;
         }
       }
     }
+  }
+
+  .modal-description-area {
+    padding: 20px;
+
+    .modal-overview {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: #e2e8f0;
+    }
+
+    .modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 16px;
+      align-items: center;
+      justify-content: space-around;
+
+      p {
+        color: #cbd5e1;
+        text-align: center;
+
+        strong {
+          color: #f1f5f9;
+        }
+      }
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: #000000;
+    border: none;
+    font-size: 24px;
+    color: #f1f5f9;
+    cursor: pointer;
+    padding: 1px 6px;
+    border-radius: 8px;
   }
 }

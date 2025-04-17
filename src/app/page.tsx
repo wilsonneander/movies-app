@@ -9,9 +9,12 @@ import { Movie } from './types/movie'
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([])
   const [search, setSearch] = useState<string>('')
+  const [isLoading, setIsLoading] = useState<boolean>(true) // novo estado
 
   useEffect(() => {
     const fetchMovies = async () => {
+      setIsLoading(true) // começar loading
+
       const endpoint =
         search.trim().length > 0
           ? 'https://api.themoviedb.org/3/search/movie'
@@ -26,6 +29,7 @@ export default function Home() {
       })
 
       setMovies(response.data.results)
+      setIsLoading(false) // terminar loading
     }
 
     fetchMovies()
@@ -33,8 +37,8 @@ export default function Home() {
 
   return (
     <>
-      <Navbar onSearchChange={setSearch} />
-      <MovieList movies={movies} />
+      <Navbar onSearchChange={setSearch} isLoading={isLoading} />
+      <MovieList movies={movies} isLoading={isLoading} />
     </>
   )
 }
