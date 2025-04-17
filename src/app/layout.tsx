@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.scss'
+import { ModalProvider } from './context/modal-context'
+import MovieModal from './components/MovieModal/movie-modal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ModalProvider>
+          <MovieModal />
+          {children}
+        </ModalProvider>
+      </body>
     </html>
   )
 }
